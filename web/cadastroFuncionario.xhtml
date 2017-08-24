@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+        <title> Cadastrar Funcionario </title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml"/>
+                <p:panel header="Cadastro de Funcionario">
+                    <h:form>
+                        <p:accordionPanel>                 
+                            <p:tab title="Dados Pessoais"> 
+                                <h:inputHidden value="#{funcionarioBean.funcionario.nivelDeAcesso}"/>
+                                 <h:inputHidden value="#{funcionarioBean.funcionario.cargo}"/>
+                                <p:panelGrid columns="2">
+                                    <h:outputLabel value="Nome "/>
+                                    <p:inputText required="true" label="nome" size="22" value="#{funcionarioBean.funcionario.nome}"/>
+                                    <h:outputLabel value="Data de Nascimento "/>             
+                                    <p:calendar pattern="dd/MM/yyyy"  label="data"  size="8" value="#{funcionarioBean.funcionario.dataNascimento}"/> 
+                                    <h:outputLabel value="CPF "/>             
+                                    <p:inputMask mask="999-999-999-99" label="cpf"  size="11"  validator="valida" value="#{funcionarioBean.funcionario.CPF}"/>
+                                    <p:outputLabel value="Formação"/>
+                                    <p:inputText required="true" label="formacao" size="22" value="#{funcionarioBean.funcionario.formacao}"/>
+                                    <p:outputLabel value="Cargo"/>
+                                    <p:outputLabel  value="#{funcionarioBean.funcionario.cargo}"/>
+                                    <p:outputLabel value="Salário"/>
+                                    <p:inputText required="true" label="salario" size="8" value="#{funcionarioBean.funcionario.salario}"/>
+                                    <p:outputLabel value="Login"/>
+                                    <p:inputText required="true" label="login" size="11" value="#{funcionarioBean.funcionario.login}"/>
+                                    <p:outputLabel value="Senha"/>
+                                    <p:password id="txtSenha" match="txtConfirmaSenha" validatorMessage="Os campos 'Senha' não são iguais" feedback="true" required="true" promptLabel="Digite uma senha segura" goodLabel="Boa" weakLabel="Razoável" strongLabel="Excelente" value="#{funcionarioBean.funcionario.senha}">
+                                        <p:watermark for="txtSenha" value="Digite sua senha" />
+                                    </p:password>
+                                    <p:outputLabel  value="Confirme a senha"/>
+                                    <p:password id="txtConfirmaSenha" feedback="true" required="true" promptLabel="Digite uma senha segura" goodLabel="Boa" weakLabel="Razoável" strongLabel="Excelente" value="#{funcionarioBean.funcionario.senha}">
+                                        <p:watermark for="txtConfirmaSenha" value="Confirme sua senha" />
+                                    </p:password>
+                                </p:panelGrid>
+                            </p:tab>
+                            <p:tab title="Endereço">
+                                <p:panelGrid columns="2">
+                                    <h:outputLabel value="Rua " />
+                                    <p:inputText required="true" label="rua" size="22" value="#{funcionarioBean.funcionario.rua}" />
+                                    <h:outputLabel value="Nº "/>
+                                    <p:inputText required="true" label="rua" size="3" value="#{funcionarioBean.funcionario.numero}"/>
+                                    <h:outputLabel value="CEP "/>
+                                    <p:inputMask mask="99999-999" label="cep"  size="7" value="#{funcionarioBean.funcionario.CEP}"/>     
+                                </p:panelGrid>
+                            </p:tab>
+                        </p:accordionPanel>
+                        <p:commandButton value="Finalizar" action="#{funcionarioBean.cadastrarFuncionario()}"/>
+                        <p:growl id="msgLogin" showDetail="true" sticky="true" autoUpdate="true"/>
+                    </h:form>
+                </p:panel>
+            </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>
+    </h:body>
+</html>
+

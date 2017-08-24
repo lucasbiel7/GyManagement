@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+        <title>Gerenciador de Academia</title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml" />
+                <ui:include src="sessionClosed.xhtml"/>
+                    <h:form id="verAluno">
+                        <p:panel header="Ver aluno" rendered="#{loginBean.logado}">
+                        <p:dataTable var="aluno" emptyMessage="Não há alunos cadastrados no sistema. " value="#{alunoBean.alunos}">
+                            <p:column width="200px;">
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet>
+                                <h:outputText value="#{aluno.nome}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Data de Nascimento"/>
+                                </f:facet>
+                                <h:outputText value="#{aluno.dataNascimento}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column style="width: 132px;">
+                                <f:facet name="header">
+                                    <h:outputText value="CPF"/>
+                                </f:facet>
+                                <h:outputText value="#{aluno.CPF}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Logradouro"/>
+                                </f:facet>
+                                <h:outputText value="#{aluno.rua}"/>
+                            </p:column>
+                            <p:column width="30px;">
+                                <f:facet name="header">
+                                    <h:outputText value="Nº"/>
+                                </f:facet>
+                                <h:outputText value="#{aluno.numero}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="CEP"/>
+                                </f:facet>
+                                <h:outputText value="#{aluno.CEP}"/>
+                            </p:column>
+                            <p:column style="text-align: center;width: 60px;">
+                                <f:facet name="header">
+                                    <h:outputLink id="txtPagamento">
+                                        <h:outputText value="Pg."/>
+                                    </h:outputLink>
+                                    <p:tooltip for="txtPagamento" value="Pagamento"/>
+                                </f:facet>
+                                <p:commandButton action="#{alunoBean.verPagamentos()}" ajax="false" icon="ui-icon-key"/>
+                            </p:column>
+                            <p:column style="text-align: center">
+                                <f:facet name="header">
+                                    <h:outputText value="Avaliações"/>
+                                </f:facet>
+                                <p:commandButton action="#{alunoBean.verAvaliacoes()}" icon="ui-icon-note" />
+                            </p:column>
+                            <p:column style="text-align: center;width: 60px;">
+                                <f:facet name="header">
+                                    <h:outputText value="Fichas"/>
+                                </f:facet>
+                                <p:commandButton action="#{alunoBean.verFichas()}" icon="ui-icon-note" />
+                            </p:column>
+                            <p:column style="width: 40px">
+                                <f:facet name="header">
+                                    <h:outputText value="-"/> 
+                                </f:facet>
+                                <p:commandButton action="#{alunoBean.selectAluno()}" ajax="false" icon="ui-icon-pencil"/>  
+                            </p:column>
+                            <p:column style="width: 40px;">
+                                <f:facet name="header">
+                                    <h:outputText value="-"/> 
+                                </f:facet>
+                                <p:commandButton action="#{alunoBean.excluir()}" ajax="false" update="@verAluno" icon="ui-icon-trash"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:growl id="msgLogin" showDetail="true" sticky="true" autoUpdate="true"/>
+                         </p:panel>
+                    </h:form>
+               
+            </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>
+    </h:body>
+</html>
+

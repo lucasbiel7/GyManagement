@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Gerenciador de Academia</title>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml" />
+                <p:panel id="index">
+                        <h:form id="login">
+                           <p:panel id="aluno" header="Login de aluno" rendered="#{loginBean.logado}">
+                                   <h:panelGrid columns="2">
+                                       <p:outputLabel value="Nome do aluno"/><p:inputText value="#{alunoBean.aluno.nome}"/>   
+                                   </h:panelGrid>
+                                   <p:commandButton value="Entrar" icon="ui-icon-arrowthick-1-e" action="#{alunoBean.login()}" update="@login" ajax="false"/>             
+                           </p:panel>
+                           <p:panel id="func" header="Área do funcionario" rendered="#{!loginBean.logado}">   
+                                       <h:panelGrid columns="2" >
+                                           <p:outputLabel value="Login"/><p:inputText required="true" value="#{loginBean.funcionario.login}"/>
+                                           <p:outputLabel value="Senha"/><p:password required="true" value="#{loginBean.funcionario.senha}" />
+                                       </h:panelGrid>
+                                       <p:commandButton action="#{loginBean.login()}" update="@login" ajax="false" value="Login" icon="ui-icon-arrowthick-1-e"/>
+                                       <!--Macarena é a melhor musica do mundo. Chupa Sociedade-->
+                           </p:panel>
+                            
+                           <p:growl id="msgLogin" showDetail="true" sticky="true" autoUpdate="true"/>
+                      </h:form>
+                    <h:form>
+                        <p:commandLink action="/faces/cadastroFuncionario.xhtml" value="Cadastrar primeiro funcionário" rendered="#{loginBean.primeiroFuncionario()}">
+                            <f:setPropertyActionListener target="#{funcionarioBean.funcionario.nivelDeAcesso}" value="3"/>
+                            <f:setPropertyActionListener target="#{funcionarioBean.funcionario.cargo}" value="Gerente"/>
+                        </p:commandLink>
+                    </h:form>
+                    </p:panel>
+                </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>
+    </h:body>
+</html>
+

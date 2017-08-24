@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+        <title>Gerenciador de Academia- Pagamentos </title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml"/>
+                <ui:include src="sessionClosed.xhtml"/>
+                <p:panel header="Receber Pagamento" rendered="#{loginBean.logado}">
+                   
+                    <p:dataTable var="pagamento" emptyMessage="Não há pagamentos cadastrados no sistema. Adicione pagamentos para gerar recibos." value="#{alunoBean.aluno.pagamentos}">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet>
+                                <h:outputText value="#{pagamento.aluno.nome}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Data do Recibo"/>
+                                </f:facet>
+                                <h:outputText value="#{pagamento.dataPagamento}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="CPF"/>
+                                </f:facet>
+                                <h:outputText value="#{pagamento.aluno.CPF}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Mensalidade"/>
+                                </f:facet>
+                                <h:outputText value="#{pagamento.mensalidade}">
+                                    <f:convertNumber pattern="R$ #.00"/>
+                                </h:outputText>
+                            </p:column>                 
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Acesso"/>
+                                </f:facet>
+                                <h:outputText value="Liberado" rendered="#{pagamento.aluno.liberado}"/>               
+                                <h:outputText value="Negado" rendered="#{!pagamento.aluno.liberado}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Forma de Pag."/>
+                                </f:facet>
+                                <h:outputLabel value="#{pagamento.formaDePagamento}"/>  
+                            </p:column>
+                            <p:column style="text-align: center;">
+                                <f:facet name="header">
+                                    <h:outputText value="Gerar recibo"/> 
+                                </f:facet>
+                                 <h:form>
+                                    <p:commandButton action="#{pagamentoBean.selectPagamento(pagamento)}" onclick="this.form.target='_blank'" ajax="false" icon="ui-icon-print"/>  
+                                </h:form>
+                            </p:column>                            
+                        </p:dataTable>
+                        <p:growl id="msgLogin" showDetail="true" sticky="true" autoUpdate="true"/>  
+                    
+                </p:panel>
+            </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>
+    </h:body>
+</html>
+

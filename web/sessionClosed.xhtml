@@ -1,0 +1,7 @@
+<h:form xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <p:panel  xmlns:p="http://primefaces.org/ui" header="Sessão Finalizada/Nível de acesso negado" rendered="#{!loginBean.logado}">
+        Sua sessão foi encerrada ou nível de acesso não permite utilizar está página,
+        caso não haja seu nome no canto esquerdo do menu <p:commandLink value="Clique aqui" action="index"/>
+        para fazer login na sua conta.
+    </p:panel>
+</h:form>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="design.css"/>
+            <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+            <title> Cadastrar Aluno </title>
+        </h:head>
+        <h:body>
+            <div id="container">
+                 <p:panel id="basic">
+                    <ui:include src="menu.xhtml"/>
+                    <ui:include src="sessionClosed.xhtml"/>
+                    <h:form id="cadastrarAluno">
+                    
+                    <p:panel header="Cadastro de Aluno" rendered="#{loginBean.logado}">
+                        <p:accordionPanel>                 
+                            <p:tab title="Dados Pessoais"> 
+                                <p:panelGrid columns="2">
+                                    <h:outputLabel value="Nome: "/>
+                                    <p:inputText required="true" label="nome" size="22" value="#{alunoBean.aluno.nome}"/>
+                                    <h:outputLabel value="Data de Nascimento: "/>             
+                                    <p:calendar pattern="dd/MM/yyyy" size="8" value="#{alunoBean.aluno.dataNascimento}"/> 
+                                    <h:outputLabel value="CPF: "/>             
+                                    <p:inputMask mask="999-999-999-99" validator="valida" label="cpf"  size="11" value="#{alunoBean.aluno.CPF}"/> 
+                                </p:panelGrid>
+                            </p:tab>
+                            <p:tab title="Endereço">
+                                <p:panelGrid columns="2">
+                                    <h:outputLabel value="Rua: "/>
+                                    <p:inputText required="true" label="rua" size="22" value="#{alunoBean.aluno.rua}" />
+                                    <h:outputLabel value="Nº: "/>
+                                    <p:inputText required="true" label="rua" size="3" value="#{alunoBean.aluno.numero}"/>
+                                    <h:outputLabel value="CEP: "/>
+                                    <p:inputMask mask="99999-999" label="cep"  size="7" value="#{alunoBean.aluno.CEP}"/>     
+                                </p:panelGrid>
+                            </p:tab>
+                        </p:accordionPanel>
+                        <p:commandButton value="Finalizar" id="withIcon" update="@cadastrarAluno" ajax="false" action="#{alunoBean.cadastro()}"/>
+                        <p:growl id="msgLogin" showDetail="true" sticky="true" autoUpdate="true"/>
+                    </p:panel>
+                 </h:form>
+                 </p:panel>
+                 <ui:include src="rodape.xhtml"/>
+            </div>
+        </h:body>
+</html>

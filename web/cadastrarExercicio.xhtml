@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+        <title> Cadastrar Exercício </title>
+    </h:head>                  
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml"/>
+                <ui:include src="sessionClosed.xhtml"/>
+                <h:form id="exercicio">
+                    <p:panel header="Cadastro de Exercício" rendered="#{loginBean.funcionario.nivelDeAcesso>2}">
+                        <p:panelGrid columns="2">
+                            <h:outputLabel value="Nome do Exercício"/>
+                            <p:inputText label="nomeExercicio" size="22" value="#{exercicioBean.exercicio.nome}"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Finalizar"  actionListener="#{exercicioBean.salvar()}" update="@exercicio" ajax="false"/>
+                        <p:growl id="msgLogin" showDetail="true" sticky="true" autoUpdate="true"/>
+                    </p:panel>
+                </h:form>
+
+            </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>  
+    </h:body>
+</html>
+

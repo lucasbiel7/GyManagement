@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+        <title>Gerenciador de Academia</title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml" />
+                <ui:include src="sessionClosed.xhtml"/>
+                <p:panel header="#{alunoBean.aluno.nome}" rendered="#{loginBean.logado}">
+                    
+                        <p:dataTable  id="verAluno" var="ficha" emptyMessage="Não há fichas cadastradas para este aluno. " value="#{alunoBean.aluno.fichas}">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Data de Início"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.dataInicio}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Avaliador"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.funcionario.nome}"/>
+                            </p:column>
+                            <p:column style="text-align: center;">
+                                <f:facet name="header">
+                                    <h:outputText value="Ficha"/> 
+                                </f:facet>
+                                <h:form>
+                                    <p:commandButton action="#{listaFichaBean.selectFicha(ficha)}" onclick="this.form.target='_blank'" ajax="false" icon="ui-icon-note"/> 
+                                </h:form>
+                            </p:column>
+                            <p:column style="width: 40px;">
+                                <f:facet name="header">
+                                    <h:outputText value="-"/> 
+                                </f:facet>
+                                <h:form>
+                                    <p:commandButton action="#{fichaBean.excluir(ficha)}" ajax="false" update="@verAluno" icon="ui-icon-trash"/>
+                                </h:form>
+                            </p:column>
+                        </p:dataTable>
+                        <p:growl id="msgLogin" showDetail="true" sticky="true" autoUpdate="true"/>
+                </p:panel>
+            </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>
+    </h:body>
+</html>

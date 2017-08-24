@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+        <title> Ver Funcionários </title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml"/>
+                <ui:include src="sessionClosed.xhtml"/>
+                <p:panel header="Ver funcionários" rendered="#{loginBean.funcionario.nivelDeAcesso>2}">
+                        <h:form id="funcionarios">
+                            <p:dataTable var="funcionario" emptyMessage="Não há funcionário cadastrados no sistema. " value="#{funcionarioBean.funcionarios}">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nome"/>
+                                    </f:facet>
+                                    <h:outputText value="#{funcionario.nome}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data de Nascimento"/>
+                                    </f:facet>
+                                    <h:outputText   value="#{funcionario.dataNascimento}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column  style="width: 132px;">
+                                    <f:facet name="header">
+                                        <h:outputText value="CPF"/>
+                                    </f:facet>
+                                    <h:outputText value="#{funcionario.CPF}"/>
+                                </p:column>
+                                <p:column  style="width: 58px;">
+                                    <f:facet name="header">
+                                        <h:outputText value="Rua"/>
+                                    </f:facet>
+                                    <h:outputText value="#{funcionario.rua}"/>
+                                </p:column>
+                                <p:column  style="width: 30px;">
+                                    <f:facet name="header">
+                                        <h:outputText value="Nº"/>
+                                    </f:facet>
+                                    <h:outputText value="#{funcionario.numero}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="CEP"/>
+                                    </f:facet>
+                                    <h:outputText value="#{funcionario.CEP}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Cargo"/>
+                                    </f:facet>
+                                    <h:outputText value="#{funcionario.cargo}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Formação"/>
+                                    </f:facet>
+                                    <h:outputText value="#{funcionario.formacao}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Salário R$"/>
+                                    </f:facet>
+                                    <h:outputText value="#{funcionario.salario}">
+                                        <f:convertNumber pattern="#.00"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column style="width: 40px;">
+                                    <f:facet name="header">
+                                        <h:outputText value="-"/> 
+                                    </f:facet>
+                                        <p:commandButton action="#{funcionarioBean.selectFuncionario()}" icon="ui-icon-pencil"/>  
+                                </p:column>
+                                <p:column style="width: 40px;">
+                                    <f:facet name="header">
+                                        <h:outputText value="-"/> 
+                                    </f:facet>
+                                    <p:commandButton action="#{funcionarioBean.excluir()}" ajax="false" update="@funcionarios" icon="ui-icon-trash"/>
+                                </p:column>
+                            </p:dataTable>
+                            <p:growl id="msgLogin" showDetail="true" sticky="true" life="10" autoUpdate="true"/>
+                        </h:form>
+                    </p:panel>
+                </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>
+    </h:body>
+</html>
+

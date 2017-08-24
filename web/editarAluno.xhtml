@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+        <title> Editar Aluno </title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml" />
+                <ui:include src="sessionClosed.xhtml"/>
+                <p:panel header="Editar Aluno" rendered="#{loginBean.logado}">
+                    <h:form>
+                        <h:inputHidden value="#{alunoBean.aluno.id}"/>
+                        <h:inputHidden value="#{alunoBean.aluno.liberado}"/>
+                        <p:accordionPanel>                 
+                            <p:tab title="Dados Pessoais"> 
+                                <p:panelGrid columns="2">
+                                    <h:outputLabel value="Nome: "/>
+                                    <p:inputText required="true" label="nome" size="22" value="#{alunoBean.aluno.nome}"/>
+                                    <h:outputLabel value="Data de Nascimento: "/>             
+                                    <p:calendar pattern="dd/MM/yyyy" label="data"  size="8" value="#{alunoBean.aluno.dataNascimento}"/> 
+                                    <h:outputLabel value="CPF: "/>             
+                                    <p:inputMask mask="999.999.999-99" validator="valida" label="cpf"  size="11" value="#{alunoBean.aluno.CPF}"/> 
+                                </p:panelGrid>
+                            </p:tab>
+                            <p:tab title="Endereço">
+                                <p:panelGrid columns="2">
+                                    <h:outputLabel value="Logradouro: "/>
+                                    <p:inputText required="true" label="rua" size="22" value="#{alunoBean.aluno.rua}"/>
+                                    <h:outputLabel value="Nº: "/>
+                                    <p:inputText required="true" label="rua" size="3" value="#{alunoBean.aluno.numero}"/>
+                                    <h:outputLabel value="CEP: "/>
+                                    <p:inputMask mask="99999-999" label="cep"  size="7" value="#{alunoBean.aluno.CEP}"/>     
+                                </p:panelGrid>
+                            </p:tab>
+                        </p:accordionPanel>
+                         <p:growl id="msgLogin" showDetail="true" sticky="true" autoUpdate="true"/>
+                        <p:commandButton value="Finalizar alteração" action="#{alunoBean.alterar()}" update="@verAluno" ajax="false"/>
+                    </h:form>
+                </p:panel>
+            </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>
+    </h:body>
+</html>
+

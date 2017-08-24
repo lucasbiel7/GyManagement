@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+        <title>Gerenciador de Academia</title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml" />
+                <p:panel header="Horário de Funcionámento" >
+                    <h:form id="verAluno"> <p:panelGrid columns="7">
+                            <p:tab>
+                                <h:outputLabel value="Domingo"/>
+                                <br/><br/>
+                                <h:outputLabel value="07:30 às 12:00"/><br/>
+                            </p:tab>
+                            <p:tab>
+                                <h:outputLabel value="Segunda à Sexta"/>
+                                <br/><br/>
+                                <h:outputLabel value="05:30 às 22:00"/><br/>
+                            </p:tab>
+                            <p:tab>
+                                <h:outputLabel value="Sabado"/>
+                                <br/><br/>
+                                <h:outputLabel value="05:30 às 12:00"/><br/>
+                            </p:tab> 
+                            <p:tab>
+                                <h:outputLabel value="Feriados"/>
+                                <br/><br/>
+                                <h:outputLabel value="Não disponível."/><br/>
+                            </p:tab>
+                            <p:tab>
+                              <h:outputLabel value="Em caso de dúvidas, favor contactar o superior presente.  "/>
+                            </p:tab>
+                        </p:panelGrid>
+
+                    </h:form>
+                </p:panel>
+            </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>
+    </h:body>
+</html>
+

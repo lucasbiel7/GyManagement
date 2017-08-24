@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+        <title>GyM - Avaliação </title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <p:panel header="Avaliação Física"  >
+                    <h:form>              
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Funcionário: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.funcionario.nome}"/>
+                                    <p:outputLabel value="Aluno: "/>             
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.aluno.nome}"/>
+                                </p:panelGrid>
+                        &nbsp;
+                                <p:panelGrid columns="4">
+                                    <p:outputLabel value="Altura: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.altura}" />
+                                    <p:outputLabel value="Peso: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.peso}" />
+                                    <p:outputLabel value="Etnia: "/>
+                                    <p:outputLabel id="etnia" value="#{avaliacaoBean.avaliacao.etnia}"/>           
+                                    <p:outputLabel for="sexo" value="Sexo:"  />
+                                    <p:outputLabel id="sexo" value="#{avaliacaoBean.avaliacao.sexo}"/>
+                                    <p:outputLabel value="Condicionamento: "/>
+                                    <p:outputLabel id="cond" value="#{avaliacaoBean.avaliacao.condicionamento}"/>                   
+                                    <p:outputLabel value="Tipo Sanguineo: "/>
+                                    <p:outputLabel id="tsang" value="#{avaliacaoBean.avaliacao.tipoSanguineo}"/>
+                                    <p:outputLabel value="Fator RH: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.rh}"/>
+                                    <p:outputLabel value="Pressão Arterial: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.pressaoArterial}"/> 
+                                    <h:outputLink id="track" value="#">
+                                        <h:outputText value="FC em repouso: " />
+                                    </h:outputLink>               
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.fcRepouso}"/>
+                                    <h:outputLink id="track2" value="#">
+                                        <h:outputText value="Ultimo Check-up: " />
+                                    </h:outputLink>               
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.ultimoCheckUp}" />
+                                </p:panelGrid>
+                        <p:selectBooleanButton id="value1" value="#{avaliacaoBean.avaliacao.aptidao}" onLabel="Apto" offLabel="Não Apto" onIcon="ui-icon-check" offIcon="ui-icon-close" disabled="true" /> 
+                                <!--Links para informação de [FC] para Frequencia Cardiaca e [Check-up] para Ultimo Check-up feito-->
+                                <p:tooltip id="avisoFC" for="track" value="Frequência Cardiaca"  />
+                                <p:tooltip id="avisoCI" for="track2" value="Ultimo check-up Médico Geral feito" />     
+                                &nbsp;
+                                <p:panelGrid columns="4">
+                                    <p:outputLabel value="Teste de Esforço:"/>
+                                    <p:selectOneRadio value="#{avaliacaoBean.avaliacao.testeDeEsforco}" disabled="true">
+                                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                                        <f:selectItem itemLabel="Não" itemValue="false" />
+                                    </p:selectOneRadio>
+                                    <p:outputLabel value="Estresse: "/>
+                                    <p:outputLabel id="estresse" value="#{avaliacaoBean.avaliacao.estresse}"/>
+                                    <p:outputLabel value="Anemia: "/>
+                                    <p:selectOneRadio id="anemia" value="#{avaliacaoBean.avaliacao.anemia}" disabled="true">
+                                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                                        <f:selectItem itemLabel="Não" itemValue="false" />                    
+                                    </p:selectOneRadio>
+                                    <p:outputLabel value="Triglicerides: "/>             
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.triglicerides}" />
+                                </p:panelGrid>
+                                &nbsp;
+                                <p:panelGrid columns="8">
+                                    <p:outputLabel value="Glicose: "/>             
+                                    <p:outputLabel  value="#{avaliacaoBean.avaliacao.glicose}"/>
+                                    <h:outputLink id="track3" value="#">
+                                        <p:outputLabel value="Col: "/> 
+                                    </h:outputLink>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.colesterol}"/>
+                                    <p:outputLabel value="HDL: "/>             
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.hdl}"/> 
+                                    <p:outputLabel value="LDL: "/>             
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.ldl}"/>                     
+                                </p:panelGrid>
+                                &nbsp;
+                                <p:panelGrid columns="4">
+                                    <p:outputLabel value="Fumante "/>    
+                                    <p:selectOneRadio id="fum" value="#{avaliacaoBean.avaliacao.fumante}" disabled="true">
+                                        <f:selectItem itemLabel="Não" itemValue="false" />
+                                        <f:selectItem itemLabel="Sim" itemValue="true" />                          
+                                    </p:selectOneRadio>
+                                    <p:outputLabel value="Cigarros por Dia"/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.numeroDeCigarros}"/>                       
+                                    <p:outputLabel value="Já fumou: "/>    
+                                    <p:selectOneRadio id="fumj" value="#{avaliacaoBean.avaliacao.jaFumou}" disabled="true">
+                                        <f:selectItem itemLabel="Não" itemValue="false" />
+                                        <f:selectItem itemLabel="Sim" itemValue="true" />                          
+                                    </p:selectOneRadio>
+                                    <p:outputLabel value="Parou a" />
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.parouA}"/>
+                                    <p:outputLabel value="Alergia"/>    
+                                    <p:selectOneRadio id="alerg" value="#{avaliacaoBean.avaliacao.alergia}" disabled="true">
+                                        <f:selectItem itemLabel="Alergico" itemValue="true"/>
+                                        <f:selectItem itemLabel="Não Alergico" itemValue="false"/>                          
+                                    </p:selectOneRadio>
+                                    <h:outputLink id="track4" value="#">
+                                        <p:outputLabel  value="Fator Desenc."/>
+                                    </h:outputLink>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.desencadeante}"/>
+                                </p:panelGrid>
+                                   &nbsp;
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Doenças Anteriores"/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.doencasAnteriores}"/>
+                                    <p:outputLabel value="Histórico de Doenças"/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.doencasFamiliares}"/>
+                                    <p:outputLabel value="Cirurgias"/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.cirurgiasEInternacoes}"/>
+                                    <p:outputLabel value="Medicação em Uso"/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.medicacao}"/>
+                                </p:panelGrid>
+                                   &nbsp;
+                                <p:panelGrid columns="4">
+                                    <h:outputLink id="track5" value="#">
+                                        <p:outputLabel value="Caso de urgência"/>
+                                    </h:outputLink>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.avisarEmergencia}"/>
+                                    <p:outputLabel value="Telefone"/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.telEmergencia}"/>
+                                    <p:outputLabel value="Médico: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.medico}"/>
+                                    <p:outputLabel value="Telefone"/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.telMedico}"/>
+                                    <p:outputLabel value="Convênio"/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.convenio}"/>
+                                    <p:outputLabel value="Hospital"/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.hospitalClinica}"/>
+                                </p:panelGrid>
+                                <!--                Link para informação de [COL] para COLESTEROL-->
+                                <p:tooltip id="avisoCol" for="track3" value="Colesterol" />
+                                <!--                Link para informação de [FDesen] para Fator Desencadeante da Alergia-->
+                                <p:tooltip id="avisoFdesen" for="track4" value="Fator Desencadeante da Alergia" />
+                                <!--                Link para informação de [Emergencia] -->
+                                <p:tooltip id="avisoEmerg" for="track5" value="Em casos de emergência, é necessária a comunicação a algum responsável. Visto pela lei vigente de locais privados em Estadia Antropologica Brasileira, aprovado pelo conselho de Relações Humanas" />
+                                &nbsp;
+                                <p:panelGrid columns="4">
+                                    <p:outputLabel value="Nutricionista: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.nutricionista}"/>
+                                    <p:outputLabel value="Telefone"/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.telNutricionista}"/> 
+                                    <p:outputLabel value="Quantas Refeições ao Dia: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.refeicoesDiarias}"/>
+                                    <p:outputLabel value="Ingere bebidas alcoolicas: "/>
+                                    <p:outputLabel id="iba" value="#{avaliacaoBean.avaliacao.bebidasAlcoolicas}"/>
+                                    <p:outputLabel value="Ingestão Calórica Diária: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.ingestaoCaloriaDia}"/>
+                                    <p:outputLabel value="Gasto Calórica Diária: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.gastoCaloricoDia}"/>
+                                    <p:outputLabel value="Frequencia que ingere líquidos: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.ingestaoLiquido}"/>
+                                    <p:outputLabel value="Suplemento em uso: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.suplementoAlimentar}"/>
+                                </p:panelGrid>
+                                &nbsp;
+                                    <p:panelGrid columns="4">
+                                        <p:outputLabel value="Pratica Atividade Física&nbsp;&nbsp; " escape="true" />    
+                                        <p:selectOneRadio id="paf3" value="#{avaliacaoBean.avaliacao.praticaAtividade}" disabled="true">
+                                            <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                                            <f:selectItem itemLabel="Sim" itemValue="true" />                              
+                                        </p:selectOneRadio> 
+                                        <p:outputLabel value="Quais "/>
+                                        <p:outputLabel value="#{avaliacaoBean.avaliacao.atividadesFisicas}"/>
+                                    </p:panelGrid>
+                                &nbsp;
+                                    <p:panelGrid columns="6">
+                                        <p:outputLabel value="Frequência Semanal "/>
+                                        <p:outputLabel value="#{avaliacaoBean.avaliacao.frequenciaAtividadeSemanal}"/>
+                                        <p:outputLabel value="Duração da sessão: "/>
+                                        <p:outputLabel value="#{avaliacaoBean.avaliacao.duracaoAtividade}"/>
+                                        <p:outputLabel value="Intensidade: "/>
+                                        <p:outputLabel id="paf2" value="#{avaliacaoBean.avaliacao.frequenciaAtividade}"/>                   
+                                        <p:outputLabel value="Praticou Atividade Física"/>    
+                                        <p:selectOneRadio id="paf" value="#{avaliacaoBean.avaliacao.praticouAntes}" disabled="true">
+                                            <f:selectItem itemLabel="Não" itemValue="false" />
+                                            <f:selectItem itemLabel="Sim" itemValue="true" />                              
+                                        </p:selectOneRadio>                        
+                                        <p:outputLabel value="Há quanto tempo: "/>
+                                        <p:outputLabel  value="#{avaliacaoBean.avaliacao.haQuantoTempo}"/>
+                                        <p:outputLabel value="Por quanto tempo: "/>
+                                        <p:outputLabel value="#{avaliacaoBean.avaliacao.porQuantoTempo}"/>
+                                        <p:outputLabel value="Frequência Semanal "/>
+                                        <p:outputLabel value="#{avaliacaoBean.avaliacao.frequenciaAtividadeSemanal}"/>
+                                        <p:outputLabel value="Duração da sessão: "/>
+                                        <p:outputLabel value="#{avaliacaoBean.avaliacao.duracaoMinAntes}"/>
+                                        <p:outputLabel value="Intensidade: "/>
+                                        <p:outputLabel id="paf8" value="#{avaliacaoBean.avaliacao.frequenciaAtividadeAnteriorSemanal}"/>                     
+                                    </p:panelGrid>
+                                &nbsp;
+                                <p:panelGrid columns="4">
+                                    <p:outputLabel value="Objetivo Desejado "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.objetivos}"/>
+                                    <p:outputLabel value="Outros: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.outros}"/>
+                                </p:panelGrid>
+                                &nbsp;
+                                <p:panelGrid columns="6">
+                                    <p:outputLabel value="Turno" escape="true"/>
+                                    <p:outputLabel id="paf5" value="#{avaliacaoBean.avaliacao.horarioPerfeito}"/>
+                                    <p:outputLabel value="Atividade Física Preferida: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.atividadeFavorita}"/>
+                                    <p:outputLabel value="Freq. na semana: "/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.vezesSemanais}"/>
+                                </p:panelGrid>
+                                &nbsp;
+                                <p:panelGrid columns="1">
+                                    <p:outputLabel value="Observações:&nbsp;&nbsp;&nbsp;" escape="true"/>
+                                    <p:outputLabel value="#{avaliacaoBean.avaliacao.observacoes}"/>
+                                </p:panelGrid>  
+                    </h:form>
+                </p:panel>
+            </p:panel> 
+             <ui:include src="rodape.xhtml"/>
+        </div>    
+    </h:body>
+</html>

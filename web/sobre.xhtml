@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+        <title>Gerenciador de Academia</title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml" />
+                <p:panel header="Sobre a Academia">
+                    <h:form id="verAluno">
+
+
+                        <p:panelGrid columns="1">
+                            <p:tab>
+                                <h:outputLabel value="A academia Movimento está no mercado há mais de 6 meses, com os melhores Profissionais, os melhores equipamentos, tudo o que você precisa para cuidar da sua Saúde e ficar em Forma, se você não conhece ainda, não perca mais tempo, venha conhecer uma de nossas Academias. "/>
+                                <br/><br/>
+                                <h:outputLabel value="Gerente Organizacional: Fulano de Tal"/><br/>
+                                <h:outputLabel value="Operando desde Jan/2014"/><br/>
+                                <h:outputLabel value="Aparelhos importados da Europa. Invencible Acessories Company "/><br/>
+                                <h:outputLabel value="Visitas regulares da vigilância sanitária e da Fiscalização do Trabalho."/><br/><br/>
+                               
+                            </p:tab>
+                            <h:outputLabel value="Em caso de dúvida, o email de suporte a aplicação é: suporte@organizacaoportal.com"/>
+                        </p:panelGrid>
+
+                    </h:form>
+                </p:panel>
+            </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>
+    </h:body>
+</html>
+

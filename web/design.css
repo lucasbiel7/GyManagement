@@ -1,0 +1,62 @@
+
+root { 
+    display: block;
+}
+body{
+background: #cdeb8e; /* Old browsers */
+background: -moz-linear-gradient(45deg,  #cdeb8e 53%, #a5c956 98%); /* FF3.6+ */
+background: -webkit-gradient(linear, left bottom, right top, color-stop(53%,#cdeb8e), color-stop(98%,#a5c956)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(45deg,  #cdeb8e 53%,#a5c956 98%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(45deg,  #cdeb8e 53%,#a5c956 98%); /* Opera 11.10+ */
+background: -ms-linear-gradient(45deg,  #cdeb8e 53%,#a5c956 98%); /* IE10+ */
+background: linear-gradient(45deg,  #cdeb8e 53%,#a5c956 98%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cdeb8e', endColorstr='#a5c956',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+#container{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#basic{
+    width: 100%;
+    min-height:750px;
+
+}
+#menu{
+/*    padding-top:-5px;
+    margin-top: -8px;
+    margin-left: -5px;
+    position: fixed;
+    width: 100%;
+    background-attachment: fixed;  */
+}
+#rodape{
+    margin-top: -2%;
+    width: 100%;
+    background-color: #f5f3ff;
+    border: 0px;
+}
+#func{
+
+    display:block;
+    margin-top: 2%;
+    margin-left: 35%;
+    min-width:30%;
+    min-height:30%;
+    max-width: 35%;
+}
+#index{
+     margin-top: 2%;
+    margin-left: 35%;
+    min-width:30%;
+    min-height:30%;
+    max-width: 35%;
+}
+#aluno{
+    display:block;
+    margin-top: 2%;
+    margin-left: 35%;
+    min-width:30%;
+    min-height:30%;
+    max-width: 35%;
+}

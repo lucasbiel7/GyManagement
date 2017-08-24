@@ -1,0 +1,43 @@
+<h:form id="menu" xmlns:h="http://java.sun.com/jsf/html">
+    <p:menubar  xmlns:p="http://primefaces.org/ui"
+               xmlns:f="http://java.sun.com/jsf/core">
+        <p:submenu label="Inicio" icon="ui-icon-home"> 
+            <p:menuitem value="Sobre" icon="ui-icon-help" url="/faces/sobre.xhtml"/>
+            <p:menuitem value="Horários" icon="ui-icon-calendar" url="/faces/horarioFuncionamento.xhtml"/>
+            <p:menuitem value="Contato" icon="ui-icon-mail-closed" url="/faces/contato.xhtml"/>
+            <p:menuitem value="Editar Perfil" icon="ui-icon-pencil" rendered="#{loginBean.logado}" action="#{funcionarioBean.editarFuncionario(loginBean.funcionario)}"/>
+            <p:separator rendered="#{loginBean.logado}"/>
+            <p:menuitem icon="ui-icon-power" value="Sair" action="#{loginBean.logout()}" rendered="#{loginBean.logado}" ajax="false" update="@login"/>
+        </p:submenu>
+        <p:submenu label="Gerencia" icon="ui-icon-contact" rendered="#{loginBean.funcionario.nivelDeAcesso>2}">
+            <p:submenu label="Cadastrar" icon="ui-icon-disk">
+                <p:menuitem icon="ui-icon-plus"  ajax="false" value=" Gerente" action="#{funcionarioBean.cadastrarFuncionario(3)}" />
+                <p:menuitem icon="ui-icon-plus" ajax="false" value=" Recepcionista" action="#{funcionarioBean.cadastrarFuncionario(1)}" />
+                <p:menuitem icon="ui-icon-plus" ajax="false" value=" Instrutor" action="#{funcionarioBean.cadastrarFuncionario(2)}" />
+            </p:submenu>
+           <p:menuitem icon="ui-icon-folder-open" value="Ver funcionários" url="/faces/verFuncionario.xhtml"/>
+        </p:submenu>
+        <p:submenu label="Instrutor" icon="ui-icon-contact" rendered="#{loginBean.funcionario.nivelDeAcesso>1}">
+            <p:submenu label="Cadastrar" icon="ui-icon-disk">
+                <p:menuitem icon="ui-icon-plus" value="Exercício" url="/faces/cadastrarExercicio.xhtml"/>
+            </p:submenu>
+            <p:menuitem icon="ui-icon-note" value="Fazer ficha" url="/faces/cadastroFicha.xhtml"/>
+            <p:menuitem icon="ui-icon-bookmark" value="Avaliação" url="/faces/cadastroAvaliacao.xhtml"/>
+        </p:submenu>
+        <p:submenu label="Recepção" icon="ui-icon-contact" rendered="#{loginBean.logado}">
+            <p:submenu label="Cadastrar" icon="ui-icon-disk">
+                <p:menuitem icon="ui-icon-plus" value="Aluno" action="#{alunoBean.cadastrar()}"/>
+            </p:submenu>
+            <p:menuitem icon="ui-icon-person" value="Acesso do aluno" action="#{alunoBean.acessoAluno()}"/>
+            <p:menuitem icon="ui-icon-folder-open" value="Ver Alunos" url="/faces/verAluno.xhtml"/>
+            <p:menuitem icon="ui-icon-circle-check" value="Receber pagamento" url="/faces/receberPagamento.xhtml"/> 
+        </p:submenu>
+        <p:menuitem  url="/faces/index.xhtml" value="Login" icon="ui-icon-extlink" rendered="#{!loginBean.logado}" />
+        <f:facet name="options">
+            <h:form>
+                <h:outputLabel escape="false" value="Seja Bem Vindo  #{loginBean.funcionario.nome}" rendered="#{loginBean.logado}"/>
+                <!--<p:commandButton style="width: 100px;height: 30px;" type="button" value="logout" icon="ui-icon-close"/>-->
+            </h:form>
+        </f:facet>
+    </p:menubar>
+</h:form>

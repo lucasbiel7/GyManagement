@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <title> Cadastrar Ficha </title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml"/>
+                <ui:include src="sessionClosed.xhtml"/>
+                <h:form id="cadastrarFicha">
+                    <p:panel header="Cadastro de Ficha" rendered="#{loginBean.funcionario.nivelDeAcesso>1}">                
+                        <p:panelGrid columns="6">
+                            <p:outputLabel value="Nome do aluno "/>
+                            <p:selectOneMenu  style="width: 200px;" value="#{fichaBean.ficha.aluno}">
+                                <f:selectItems var="aluno" value="#{alunoBean.getListaAluno()}" itemLabel="#{aluno.nome}" itemValue="#{aluno}"/>
+                                    <f:converter converterId="converterAluno"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Nome do instrutor "/>
+                            <p:inputText  size="22" value="#{loginBean.funcionario.nome}"/>
+                            <p:outputLabel value="Data de início"/>
+                            <p:calendar pattern="dd/MM/yyyy" label="data" value="#{fichaBean.ficha.dataInicio}"/>
+                        </p:panelGrid>
+                        <p:panelGrid columns="5">
+                            <p:outputLabel value="Exercício "/>
+                            <p:outputLabel value="Série "/>
+                            <p:outputLabel value="Repetição "/>
+                            <p:outputLabel value="Observações "/>
+                            <p:outputLabel value=" "/>
+                            <p:selectOneMenu value="#{fichaBean.itemFicha.exercicio}"  style="min-width: 300px;">
+                                <f:selectItems var="exercicio" value="#{exercicioBean.exercicios}" itemLabel="#{exercicio.nome}" itemValue="#{exercicio}"/>
+                                <f:converter converterId="converterExercicio"/>
+                            </p:selectOneMenu>
+                            <p:inputText label="serie" size="1" value="#{fichaBean.itemFicha.serie}"/>
+                            <p:inputText label="repeticao" size="3" value="#{fichaBean.itemFicha.repeticao}"/>
+                            <p:inputText label="observacao" size="48" value="#{fichaBean.itemFicha.observacao}"/>   
+                            <p:commandButton icon="ui-icon-plus"  action="#{fichaBean.addItemFicha()}" update="@cadastrarFicha" ajax="false"/>
+                        </p:panelGrid>
+                        <p:dataTable var="itemFicha" value="#{fichaBean.ficha.itemFichas}">
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="Exercício"/>
+                                </f:facet>
+                                <p:outputLabel value="#{itemFicha.exercicio.nome}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="Série"/>
+                                </f:facet>
+                                <p:outputLabel value="#{itemFicha.serie}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="Repetição"/>
+                                </f:facet>
+                                <p:outputLabel value="#{itemFicha.repeticao}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="Observações"/>
+                                </f:facet>
+                                <p:outputLabel value="#{itemFicha.observacao}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="-" />
+                                </f:facet>
+                                <p:commandButton action="#{fichaBean.deletarItemFicha(itemFicha)}" ajax="false" update="@cadastrarFicha" icon="ui-icon-trash"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:commandButton value="Finalizar"  action="#{fichaBean.cadastrar()}"/>    
+                    </p:panel>
+                    <p:growl id="msgLogin" showDetail="true" sticky="true" autoUpdate="true"/>
+                </h:form>
+            </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>       
+    </h:body>
+</html>
+

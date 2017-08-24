@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Gerenciador de Academia</title>
+        <link rel="stylesheet" type="text/css" href="design.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/image/icon.png"/>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <p:panel id="basic">
+                <ui:include src="menu.xhtml" />
+                <p:panel header="Contate-nós">
+                    <h:form id="contato">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel value="E-mail"/><p:inputText size="22" value="#{emailBean.email.email}"/>
+                            <p:outputLabel value="Nome"/><p:inputText size="22" value="#{emailBean.email.nome}"/>
+                            <p:outputLabel value="Titulo"/><p:inputText size="22" value="#{emailBean.email.titulo}"/>
+                            <p:outputLabel value="Mensagem"/>   
+                        </h:panelGrid>
+                        <p:inputTextarea value="#{emailBean.email.mensagem}" rows="5" cols="50" placeholder="Digite sua mensagem aqui!" counter="display" maxlength="255" counterTemplate="{0} caracteres restantes." autoResize="false" /><br/>
+                        <p:outputLabel id="display"/>
+                        <h:panelGrid columns="2">
+                            <p:commandButton value="Enviar mensagem" action="#{emailBean.enviarEmail()}" ajax="false" update="@contato"/>
+                            <p:commandButton value="Limpar formulário" type="reset"/>
+                        </h:panelGrid>
+                        <p:growl id="msgLogin" showDetail="true" sticky="true" autoUpdate="true"/>
+                    </h:form>
+                </p:panel>
+            </p:panel>
+            <ui:include src="rodape.xhtml"/>
+        </div>
+    </h:body>
+</html>
